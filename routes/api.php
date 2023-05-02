@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\MenuController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +23,12 @@ use App\Http\Controllers\API\CategoryController;
 // });
 
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+Route::get('/user', [AuthController::class, 'fetch'])->middleware('auth:sanctum');
+Route::post('/update-profile', [AuthController::class, 'updateProfile'])->middleware('auth:sanctum');
+
 Route::get('/menu', [MenuController::class, 'all']);
 Route::get('/category', [CategoryController::class, 'all']);
+
+Route::post('/transaction', [TransactionController::class, 'CreateTransaction'])->middleware('auth:sanctum');
+Route::post('/transaction/set-status', [TransactionController::class, 'SetStatus'])->middleware('auth:sanctum');
