@@ -30,5 +30,6 @@ Route::post('/update-profile', [AuthController::class, 'updateProfile'])->middle
 Route::get('/menu', [MenuController::class, 'all']);
 Route::get('/category', [CategoryController::class, 'all']);
 
-Route::post('/transaction', [TransactionController::class, 'CreateTransaction'])->middleware('auth:sanctum');
+Route::get('/transaction', [TransactionController::class, 'all'])->middleware('auth:sanctum');
+Route::post('/transaction/create', [TransactionController::class, 'CreateTransaction'])->middleware('auth:sanctum');
 Route::post('/transaction/set-status', [TransactionController::class, 'SetStatus'])->middleware('auth:sanctum');

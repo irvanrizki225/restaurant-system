@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,6 +27,19 @@ class DatabaseSeeder extends Seeder
         //         'created_by' => '1',
         //     ]);
         // }
+
+        for ($i=0; $i < 1; $i++) { 
+            $faker = Faker::create('id_ID');
+
+            DB::table('tb_employees')->insert([
+                'user_id' => '1',
+                'name' => $faker->name,
+                'position' => 'Pelayan',
+                'created_at' => date('Y-m-d H:i:s'),
+                'created_by' => 'admin',
+            ]);
+
+        }
         
     }
 }
